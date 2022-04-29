@@ -1,0 +1,23 @@
+<h1>質問詳細</h1>
+<h2>質問に回答する</h2>
+<%= form_with model: [@question, @question.answers.build] do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+<h2>回答一覧</h2>
+<% @question.answers.each do|answer| %>
+  <%= answer.name %>
+  <p>
+    <%= link_to '回答を削除', [answer.question, answer],
+        data: { turbo_method: 'delete', turbo_confirm: '削除してもよろしいですか？' } %>
+  </p>
+<% end %>
