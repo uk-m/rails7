@@ -1,24 +1,26 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Name
 
-Things you may want to cover:
+# Overview
 
-* Ruby version
+  Agriculture Q&A
 
-* System dependencies
+# DEMO
 
-* Configuration
+# Features
 
-* Database creation
+  You can clear agriculturally doubts.
 
-* Database initialization
+# Usage
 
-* How to run the test suite
+# Requirement
 
-* Services (job queues, cache servers, search engines, etc.)
+  ruby 3.0.2
+  rails 7.0.0
 
-* Deployment instructions
+# Note
 
-* ...
+# Author
+
+  * Yuuuuuuk
