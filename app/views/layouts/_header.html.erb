@@ -16,14 +16,14 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><%= link_to "マイページ", mypage_path, class: "dropdown-item" %></li>
+            <li><%= link_to "マイページ", user_path, class: "dropdown-item" %></li>
             <li><hr class="dropdown-divider"></li>
-            <li><%= link_to "ログアウト", logout_path, data: { turbo_method: :delete }, class: "dropdown-item" %></li>
+            <li><%= button_to "ログアウト", logout_path, data: { turbo_method: :delete }, class: "dropdown-item" %></li>
           </ul>
         </li>
         <% else %>
-          <%= button_to "新規登録", new_user_path, class: "nav-link" %>
-          <%= button_to "ログイン", login_path, class: "nav-link" %>
+          <%= link_to "新規登録", new_user_path, class: "nav-link" %>
+          <%= link_to "ログイン", login_path, class: "nav-link" %>
         <% end %>
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
