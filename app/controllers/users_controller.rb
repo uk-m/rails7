@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
+      flash[:success] = "新規登録完了しました"
       redirect_to root_path
     else
       flash[:user] = user
