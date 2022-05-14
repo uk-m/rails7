@@ -8,9 +8,11 @@
     <%= f.label :password, 'パスワード' %>
     <%= f.password_field :password, class: 'form-control' %>
   </div>
-  <%= f.label :remember_me, class: "checkbox inline" do %>
-    <%= f.check_box :remember_me %>
-    <span>このアカウントを記憶する</span>
-  <% end %>
+  <div>
+    <%= f.label :remember_me, class: "form-check" do %>
+      <%= f.check_box :remember_me %>
+      <label class="form-check-label">このアカウントを記憶する</label>
+    <% end %>
+  </div>
   <%= f.submit 'ログイン', class: 'btn btn-primary' %>
 <% end %>
