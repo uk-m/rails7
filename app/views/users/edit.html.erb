@@ -1,21 +1,3 @@
+<% provide(:button_text, '変更する') %>
 <h1>アカウント編集</h1>
-<%= form_with(model: @user, local: true) do |f| %>
-  <%= render 'shared/error_messages' %>
-  <div class="form-group">
-    <%= f.label :name, '名前' %>
-    <%= f.text_field :name, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :email, 'メールアドレス' %>
-    <%= f.email_field :email, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password, 'パスワード' %>
-    <%= f.password_field :password, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password_confirmation, 'パスワード確認用' %>
-    <%= f.password_field :password_confirmation, class: 'form-control' %>
-  </div>
-  <%= f.submit "変更する", class: "btn btn-primary" %>
-<% end %>
+<%= render 'form' %>
