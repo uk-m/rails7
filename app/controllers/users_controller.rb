@@ -4,15 +4,15 @@ class UsersController < ApplicationController
   end
   
   def create
-    user = User.new(user_params)
-    if user.save
-      session[:user_id] = user.id
+    @user = User.new(user_params)
+    if @user.save
+      log_in @user
       flash[:success] = "新規登録完了しました"
       redirect_to root_path
     else
-      flash[:user] = user
-      flash[:error_messages] = user.errors.full_messages
-      redirect_back fallback_location: { action: "new", id: user.id }
+      flash[:user] = @user
+      flash[:error_messages] = @user.errors.full_messages
+      redirect_back fallback_location: { action: "new", id: @user.id }
     end
   end
   
@@ -21,6 +21,15 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      render 'edit'
+    end
   end
   
   private
