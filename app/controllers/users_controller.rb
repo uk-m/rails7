@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: %i(edit update)
+  before_action :logged_in_user, only: %i(edit update destroy)
   
   def new
     @user = User.new(flash[:user])
@@ -32,6 +32,12 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+  
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_url
   end
   
   private
