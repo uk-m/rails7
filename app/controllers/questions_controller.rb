@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_action :logged_in_user, only: %i(create destroy)
+  
   def index
     @questions = Question.all
   end
@@ -12,7 +14,7 @@ class QuestionsController < ApplicationController
   end
   
   def create
-    @question = Question.new(question_params)
+    @question = current_user.questions.new(question_params)
     if @question.save
       redirect_to @question
     else
