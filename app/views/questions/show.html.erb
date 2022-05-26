@@ -1,13 +1,14 @@
 <h1>質問詳細</h1>
 <%= @question.user.name %>
 <h2>質問に回答する</h2>
-<%= form_with model: [@question, @question.answers.build] do |form| %>
-  <div>
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+<%= form_with model: [@question, @question.answers.build] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="form-group">
+    <%= f.label :content, '内容' %>
+    <%= f.text_area :content, class: 'form-control' %>
   </div>
-  <div>
-    <%= form.submit %>
+  <div class="form-group">
+    <%= f.submit %>
   </div>
 <% end %>
 <h2>回答一覧</h2>

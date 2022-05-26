@@ -1,9 +1,10 @@
-<% if flash[:error_messages]  %>
+<% if object.errors.any? %>
   <div class="alert alert-danger">
-    <ul>
-      <% flash[:error_messages].each do |msg|  %>
-        <li><%= msg %></li>
-      <% end %>
-    <ul>
+    <%= pluralize(object.errors.count, "項目") %>間違っています
   </div>
+  <ul>
+  <% object.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
 <% end %>
