@@ -1,0 +1,10 @@
+<h1>カテゴリー一覧</h1>
+<table>
+  <tbody>
+    <% @categories.each do |category| %>
+    <tr>
+      <td><%= category.name %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
