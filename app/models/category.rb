@@ -1,3 +1,3 @@
 class Category < ApplicationRecord
-  belongs_to :question
+  has_many :question
 end
