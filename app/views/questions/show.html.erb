@@ -1,7 +1,9 @@
 <h1>質問詳細</h1>
 <%= @question.user.name %>
+<%= @question.content %>
 <h2>質問に回答する</h2>
 <%= form_with model: [@question, @question.answers.build] do |f| %>
+<%= form_with model: [@question, Answer.new] do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="form-group">
     <%= f.label :content, '内容' %>
@@ -14,7 +16,7 @@
 <h2>回答一覧</h2>
 <% @question.answers.each do|answer| %>
   <%= answer.content %>
-  <% if current_user %>
+  <% if current_user == answer.user %>
     <%= link_to '回答を削除', [answer.question, answer],
         data: { turbo_method: 'delete', turbo_confirm: '削除してもよろしいですか？' } %>
   <% end %>
