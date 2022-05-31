@@ -9,6 +9,7 @@ ja:
       question:
         title: タイトル
         content: 内容
+        category: カテゴリー
   datetime:
     distance_in_words:
       half_a_minute: "30秒前後"
