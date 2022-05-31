@@ -1,9 +1,13 @@
 class AnswersController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
-    # @question.answers.create(answer_params)
-    @answer = current_user.answers.new(answer_params)
-    redirect_to question_path(@question)
+    @answer = Answer.new(answer_params)
+    # @question = @answer.question
+    if @question.save
+      redirect_to question_path(@question)
+    else
+      redirect_to @question
+    end
   end
   
   def destroy
@@ -15,6 +19,6 @@ class AnswersController < ApplicationController
   
   private
     def answer_params
-      params.require(:answer).permit(:content)
+      params.require(:answer).permit(:user_id, :question_id, :content)
     end
 end
