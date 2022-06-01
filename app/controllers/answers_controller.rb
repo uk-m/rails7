@@ -1,12 +1,13 @@
 class AnswersController < ApplicationController
+  before_action :logged_in_user, only: %i(create destroy)
+  
   def create
     @question = Question.find(params[:question_id])
-    @answer = Answer.new(answer_params)
-    # @question = @answer.question
-    if @question.save
-      redirect_to question_path(@question)
-    else
+    @answer = current_user.answers.new(answer_params)
+    if @answer.save
       redirect_to @question
+    else
+      redirect_to @question, status: :unprocessable_entity
     end
   end
   
@@ -19,6 +20,6 @@ class AnswersController < ApplicationController
   
   private
     def answer_params
-      params.require(:answer).permit(:user_id, :question_id, :content)
+      params.require(:answer).permit(:content)
     end
 end

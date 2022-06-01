@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_secure_password
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
+  has_one_attached :image
   
   validates :name, presence: true, length: { maximum: 25 }
   before_save { self.email = email.downcase }
