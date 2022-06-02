@@ -9,16 +9,16 @@
     <%= f.email_field :email, class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :email, 'メールアドレス' %>
-    <%= f.email_field :email, class: 'form-control' %>
+    <%= f.label :image, 'プロフィール写真' %>
+    <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :image, 'プロフィール写真' %>
-    <%= f.file_field :image, class: 'form-control' %>
+    <%= f.label :password, 'パスワード' %>
+    <%= f.password_field :password, class: 'form-control' %>
   </div>
   <div class="form-group">
     <%= f.label :password_confirmation, 'パスワード確認用' %>
     <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
-  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+  <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
 <% end %>
