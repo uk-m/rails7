@@ -13,6 +13,9 @@ class User < ApplicationRecord
     length: { maximum: 40 },
     format: { with: VALID_EMAIL_REGEX },
     uniqueness: { case_sensitive: false }
+  validates :image, content_type: { in: %w[image/jpeg image/gif image/png],
+                                      message: "画像ファイルを選択してください" },
+                    size: { less_than: 5.megabytes,　message: "画像は5MBまでです" }
   validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
   
   class << self
@@ -39,5 +42,9 @@ class User < ApplicationRecord
   
   def forget
     update_attribute(:remember_digest, nil)
+  end
+  
+  def display_image
+    image.variant(resize_to_limit: [500, 500])
   end
 end
