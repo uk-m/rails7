@@ -1,2 +1,3 @@
 <h1>マイページ</h1>
+<%= image_tag current_user.display_image if current_user.image.attached? %>
 <%= current_user.name %>

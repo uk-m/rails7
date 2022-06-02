@@ -49,12 +49,15 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 gem "rails-i18n"
 gem "webpacker"
-gem 'importmap-rails'
+gem "active_storage_validations"
+gem "image_processing"
+gem "mini_magick"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem "rspec-rails", "~> 3.8"
+  gem "pry-byebug"
 end
 
 group :development do

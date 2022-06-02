@@ -1,0 +1,14 @@
+
+[1mFrom:[0m /home/ubuntu/environment/rails7/app/controllers/answers_controller.rb:8 AnswersController#create:
+
+     [1;34m4[0m: [32mdef[0m [1;34mcreate[0m
+     [1;34m5[0m:   @question = [1;34;4mQuestion[0m.find(params[[33m:question_id[0m])
+     [1;34m6[0m:   @answer = current_user.answers.new(answer_params)
+     [1;34m7[0m:   binding.pry
+ =>  [1;34m8[0m:   [32mif[0m @answer.save
+     [1;34m9[0m:     redirect_to @question
+    [1;34m10[0m:   [32melse[0m
+    [1;34m11[0m:     redirect_to @question, [35mstatus[0m: [33m:unprocessable_entity[0m
+    [1;34m12[0m:   [32mend[0m
+    [1;34m13[0m: [32mend[0m
+
