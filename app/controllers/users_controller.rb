@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   end
 
   def followers
-    @title =　"フォロワー"
+    @title = "フォロワー"
     @user  = User.find(params[:id])
     @users = @user.followers.page(params[:page])
     render 'show_follow'
