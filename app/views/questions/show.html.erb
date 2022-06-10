@@ -1,5 +1,5 @@
 <h1>質問詳細</h1>
-<%= @question.user.name %>
+<%= link_to @question.user.name, user_path(@question.user) %>
 <%= @question.content %>
 <h2>質問に回答する</h2>
 <%= form_with model: [@question, Answer.new] do |f| %>
@@ -13,7 +13,7 @@
   </div>
 <% end %>
 <h2>回答一覧</h2>
-<% @question.answers.each do|answer| %>
+<% @question.answers.each do |answer| %>
   <%= answer.content %>
   <% if current_user == answer.user %>
     <%= link_to '回答を削除', [answer.question, answer],

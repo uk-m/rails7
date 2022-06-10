@@ -1,0 +1,5 @@
+<%= link_to question.user.name, user_path(question.user) %>
+<%= question.title %>
+<%= simple_format(question.content) %>
+<%= link_to question.category.name, category_path(question.category) %>
+<%= link_to '詳細', question_path(question) %>
