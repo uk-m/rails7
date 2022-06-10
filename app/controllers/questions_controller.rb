@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: %i(show edit update destroy)
   
   def index
-    @questions = Question.all
+    @questions = Question.page(params[:page]).per(6)
   end
   
   def show
