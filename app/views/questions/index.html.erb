@@ -1,7 +1,2 @@
 <h1>質問一覧</h1>
-<% @questions.each do |question| %>
-  <%= question.title %>
-  <%= simple_format(question.content) %>
-  <%= question.category.name %>
-  <%= link_to '詳細', question_path(question) %>
-<% end %>
+<%= render @questions %>
