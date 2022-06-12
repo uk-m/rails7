@@ -43,21 +43,21 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "削除しました"
-    redirect_to users_url
+    redirect_to users_url, status: :see_other
   end
   
   def following
     @title = "フォロー中"
     @user  = User.find(params[:id])
     @users = @user.following.page(params[:page])
-    render 'show_follow'
+    render 'show_follow', status: :unprocessable_entity
   end
 
   def followers
     @title = "フォロワー"
     @user  = User.find(params[:id])
     @users = @user.followers.page(params[:page])
-    render 'show_follow'
+    render 'show_follow', status: :unprocessable_entity
   end
   
   private
@@ -67,6 +67,6 @@ class UsersController < ApplicationController
     end
     
     def admin_user
-      redirect_to(root_url) unless current_user.admin?
+      redirect_to(root_url, status: :see_other) unless current_user.admin?
     end
 end

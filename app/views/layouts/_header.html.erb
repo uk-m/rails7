@@ -24,7 +24,7 @@
             <li><%= link_to "マイページ", current_user, class: "dropdown-item" %></li>
             <li><%= link_to "アカウント編集", edit_user_path(current_user), class: "dropdown-item" %></li>
             <li><hr class="dropdown-divider"></li>
-            <li><%= link_to "ログアウト", logout_path, data: { turbo_method: :delete }, class: "dropdown-item" %></li>
+            <li><%= link_to "ログアウト", logout_path, data: { "turbo-method": :delete }, class: "dropdown-item" %></li>
           </ul>
         </li>
         <% else %>
