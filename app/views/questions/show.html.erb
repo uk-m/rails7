@@ -16,7 +16,7 @@
 <% @question.answers.each do |answer| %>
   <%= answer.content %>
   <% if current_user == answer.user %>
-    <%= link_to '回答を削除', [answer.question, answer],
-        data: { turbo_method: 'delete', turbo_confirm: '削除してもよろしいですか？' } %>
+    <%= link_to '回答を削除', answer.question,
+        data: { "turbo-method": :delete, turbo_confirm: '削除してもよろしいですか？' } %>
   <% end %>
 <% end %>

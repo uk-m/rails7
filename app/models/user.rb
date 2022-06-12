@@ -14,33 +14,33 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   
   validates :name, presence: true, length: { maximum: 25 }
-  before_save { self.email = email.downcase }
+  before_save :downcase_email
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email,
-    presence: true,
-    length: { maximum: 40 },
-    format: { with: VALID_EMAIL_REGEX },
-    uniqueness: { case_sensitive: false }
+  validates :email, presence: true, length: { maximum: 40 },
+    format: { with: VALID_EMAIL_REGEX }, uniqueness: true
   validates :image, content_type: { in: %w[image/jpeg image/gif image/png],
                                       message: "画像ファイルを選択してください" },
                     size: { less_than: 5.megabytes,　message: "画像は5MBまでです" }
   validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
   
-  class << self
-    def digest(string)
-      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                    BCrypt::Engine.cost
-      BCrypt::Password.create(string, cost: cost)
-    end
+  def User.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                  BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
+  end
 
-    def new_token
-      SecureRandom.urlsafe_base64
-    end
+  def User.new_token
+    SecureRandom.urlsafe_base64
   end
   
   def remember
     self.remember_token = User.new_token
     update_attribute(:remember_digest, User.digest(remember_token))
+    remember_digest
+  end
+  
+  def session_token
+    remember_digest || remember
   end
   
   def authenticated?(remember_token)
@@ -52,19 +52,21 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
   
-  def display_image
-    image.variant(resize_to_limit: [500, 500])
-  end
-  
   def follow(other_user)
-    following << other_user
+    following << other_user unless self == other_user
   end
 
   def unfollow(other_user)
-    active_relationships.find_by(followed_id: other_user.id).destroy
+    following.delete(other_user)
   end
 
   def following?(other_user)
     following.include?(other_user)
   end
+  
+  private
+  
+    def downcase_email
+      self.email = email.downcase
+    end
 end
