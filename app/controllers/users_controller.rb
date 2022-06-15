@@ -18,9 +18,7 @@ class UsersController < ApplicationController
       flash[:success] = "新規登録完了しました"
       redirect_to root_path
     else
-      flash[:user] = @user
-      flash[:error_messages] = @user.errors.full_messages
-      redirect_back fallback_location: { action: "new", id: @user.id }
+      render 'new', status: :unprocessable_entity
     end
   end
   
