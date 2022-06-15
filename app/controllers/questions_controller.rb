@@ -16,6 +16,7 @@ class QuestionsController < ApplicationController
   def create
     @question = current_user.questions.new(question_params)
     if @question.save
+      flash[:success] = '質問を投稿しました'
       redirect_to @question
     else
       render 'new', status: :unprocessable_entity

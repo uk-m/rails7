@@ -1,16 +1,18 @@
 <h1>質問詳細</h1>
 <%= link_to @question.user.name, user_path(@question.user) %>
 <%= @question.content %>
-<h2>質問に回答する</h2>
-<%= form_with model: [@question, Answer.new] do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="form-group">
-    <%= f.label :content, '内容' %>
-    <%= f.text_area :content, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.submit %>
-  </div>
+<% if logged_in? %>
+  <h2>質問に回答する</h2>
+  <%= form_with model: [@question, Answer.new] do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="form-group">
+      <%= f.label :content, '内容' %>
+      <%= f.text_area :content, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.submit %>
+    </div>
+  <% end %>
 <% end %>
 <h2>回答一覧</h2>
 <% @question.answers.each do |answer| %>
