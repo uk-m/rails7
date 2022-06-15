@@ -9,7 +9,8 @@ class SessionsController < ApplicationController
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to root_path
     else
-      render 'new'
+      flash.now[:danger] = '正しい情報を入力してください'
+      render 'new', status: :unprocessable_entity
     end
   end
 
