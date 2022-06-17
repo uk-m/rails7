@@ -1,4 +1,4 @@
-<%= link_to question.user.name, user_path(question.user) %>
+<%= link_to question.user.name, question.user %>
 <%= question.title %>
 <%= simple_format(question.content) %>
 <%= link_to question.category.name, category_path(question.category) %>
