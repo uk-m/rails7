@@ -49,6 +49,7 @@ gem "active_storage_validations"
 gem "image_processing"
 gem "mini_magick"
 gem "kaminari"
+gem "ransack"
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

@@ -3,6 +3,7 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: %i(show edit update destroy)
   
   def index
+    @q = current_user.questions.ransack(params[:q])
     @questions = Question.page(params[:page]).per(6)
   end
   
