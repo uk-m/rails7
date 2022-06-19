@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   
   root "questions#index"
   resources :users do
+    collection do
+      get 'search'
+    end
     member do
       get :following, :followers
     end
