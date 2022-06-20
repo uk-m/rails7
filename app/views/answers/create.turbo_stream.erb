@@ -1,0 +1,6 @@
+<%= turbo_stream.replace "new_answer" do %>
+  <%= render "answers/form" %>
+<% end %>
+<%= turbo_stream.prepend "answers" do %>
+  <%= render @answer %>
+<% end %>
