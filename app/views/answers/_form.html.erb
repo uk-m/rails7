@@ -1,0 +1,9 @@
+<%= form_with model: [@question, @answer] do |f| %>
+  <div class="form-group">
+    <%= f.label :content, '内容' %>
+    <%= f.text_area :content, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.submit '回答する', class: 'btn btn-primary' %>
+  </div>
+<% end %>
