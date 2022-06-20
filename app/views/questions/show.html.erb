@@ -3,22 +3,11 @@
 <%= @question.content %>
 <% if logged_in? %>
   <h2>質問に回答する</h2>
-  <%= form_with model: [@question, Answer.new] do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-    <div class="form-group">
-      <%= f.label :content, '内容' %>
-      <%= f.text_area :content, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.submit %>
-    </div>
-  <% end %>
+  <div id="new_answer">
+  <%= render "answers/form" %>
+  </div>
 <% end %>
 <h2>回答一覧</h2>
-<% @question.answers.each do |answer| %>
-  <%= answer.content %>
-  <% if current_user == answer.user %>
-    <%= link_to '回答を削除', [answer.question, answer],
-        data: { "turbo-method": :delete, turbo_confirm: '削除してもよろしいですか？' } %>
-  <% end %>
-<% end %>
+<div id="answers">
+  <%= render @answers %>
+</div>
