@@ -3,11 +3,7 @@
 <%= @question.content %>
 <% if logged_in? %>
   <h2>質問に回答する</h2>
-  <div id="new_answer">
   <%= render "answers/form" %>
-  </div>
 <% end %>
 <h2>回答一覧</h2>
-<div id="answers">
-  <%= render @answers %>
-</div>
+<%= render @answers %>
