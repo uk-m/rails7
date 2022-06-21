@@ -6,10 +6,7 @@ class AnswersController < ApplicationController
     @answer = @question.answers.build(answer_params)
     @answer.user_id = current_user.id
     if @answer.save
-      respond_to do |format|
-        format.html { redirect_to @question }
-        format.turbo_stream
-      end
+      redirect_to @question
     else
       flash[:danger] = "回答できませんでした"
       redirect_to @question, status: :unprocessable_entity
