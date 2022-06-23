@@ -1,4 +1,6 @@
-<%= form_with model: [@question, @answer] do |f| %>
+<%= form_with model: [@question, Answer.new] do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :question_id, value: @question.id %>
   <div class="form-group">
     <%= f.label :content, '内容' %>
     <%= f.text_area :content, class: 'form-control' %>
