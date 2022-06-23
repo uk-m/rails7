@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root "questions#index"
   resources :users do
     collection do
-      get 'search'
+      get :search
     end
     member do
       get :following, :followers
@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :categories, only: %i(index show)
   resources :relationships, only: %i(create destroy)
   resources :questions do
-    resources :answers, only: %i(create destroy)
+    resources :answers, only: %i(create destroy) do 
+      resources :likes, only: %i(create destroy)
+    end
   end
 end
