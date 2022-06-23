@@ -1,0 +1,6 @@
+<%= turbo_stream.update "like_button" do %>
+  <%= link_to "いいね", question_answer_likes_path(@answer), data: { "turbo-method": :post }, remote: true %>
+<% end %>
+<%= turbo_stream.update "likes_count" do %>
+  いいね: <%= @answer.likes.count %>件
+<% end %>
