@@ -1,4 +1,6 @@
 class LikesController < ApplicationController
+  before_action :logged_in_user, only: %i(create destroy)
+  
   def create
     @like = current_user.likes.create(answer_id: params[:answer_id])
     @answer = @like.answer
