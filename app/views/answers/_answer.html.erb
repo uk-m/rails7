@@ -3,11 +3,13 @@
   <%= link_to '回答を削除', [answer.question, answer],
       data: { "turbo-method": :delete, turbo_confirm: '削除してもよろしいですか？' } %>
 <% end %>
-<div id="like_button">
-  <% if answer.liked_by(current_user).present? %>
-    <%= link_to "いいねを取り消す", question_answer_like_path(answer.id, answer.liked_by(current_user)), data: { "turbo-method": :delete }, remote: true %>
-  <% else %>
-    <%= link_to "いいね", question_answer_likes_path(@question, answer), data: { "turbo-method": :post }, remote: true %>
-  <% end %>
-</div>
+<% if logged_in? %>
+  <div id="like_button">
+    <% if answer.liked_by(current_user).present? %>
+      <%= link_to "いいねを取り消す", question_answer_like_path(answer.id, answer.liked_by(current_user)), data: { "turbo-method": :delete }, remote: true %>
+    <% else %>
+      <%= link_to "いいね", question_answer_likes_path(answer.question, answer), data: { "turbo-method": :post }, remote: true %>
+    <% end %>
+  </div>
+<% end %>
 <h4 id="likes_count">いいね: <%= answer.likes.count %>件</h4>
