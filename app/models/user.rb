@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :likes, dependent: :destroy
   has_many :liked_answers, through: :likes, source: :answer
+  has_many :saves, dependent: :destroy
+  has_many :saved_questions, through: :saves, source: :question
   
   validates :name, presence: true, length: { maximum: 25 }
   before_save :downcase_email
