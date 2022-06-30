@@ -1,14 +1,14 @@
 <h1>質問詳細</h1>
 <%= link_to @question.user.name, user_path(@question.user) %>
 <%= @question.content %>
-<div id="save_button">
-  <% if @question.saved_by(current_user).present? %>
-    <%= link_to "保存取り消し", question_save_path(@question.id, @question.saved_by(current_user)), data: { "turbo-method": :delete } %>
-  <% else %>
-    <%= link_to "保存", question_saves_path(@question), data: { "turbo-method": :post } %>
-  <% end %>
-</div>
 <% if logged_in? %>
+  <div id="interest_button">
+    <% if @question.interested_by(current_user).present? %>
+      <%= render partial: "interests/uninterest" %>
+    <% else %>
+      <%= render partial: "interests/interest" %>
+    <% end %>
+  </div>
   <h2>質問に回答する</h2>
   <%= render "answers/form" %>
 <% end %>
