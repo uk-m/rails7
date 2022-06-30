@@ -1,3 +1,0 @@
-<%= turbo_stream.update "save_button" do %>
-  <%= link_to "保存取り消し", question_saves_path(@question.id, @save), data: { "turbo-method": :delete } %>
-<% end %>

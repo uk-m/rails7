@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_28_120437) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_29_181358) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -55,6 +55,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_120437) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "interests", force: :cascade do |t|
+    t.integer "question_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_interests_on_question_id"
+    t.index ["user_id"], name: "index_interests_on_user_id"
+  end
+
   create_table "likes", force: :cascade do |t|
     t.integer "answer_id", null: false
     t.integer "user_id", null: false
@@ -84,15 +93,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_120437) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
-  create_table "saves", force: :cascade do |t|
-    t.integer "question_id", null: false
-    t.integer "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_saves_on_question_id"
-    t.index ["user_id"], name: "index_saves_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
@@ -108,9 +108,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_120437) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
+  add_foreign_key "interests", "questions"
+  add_foreign_key "interests", "users"
   add_foreign_key "likes", "answers"
   add_foreign_key "likes", "users"
   add_foreign_key "questions", "users"
-  add_foreign_key "saves", "questions"
-  add_foreign_key "saves", "users"
 end
