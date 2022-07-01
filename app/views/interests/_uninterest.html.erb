@@ -1,1 +1,1 @@
-<%= link_to "気になる取消", question_interests_path(@question.id, @question.interested_by(current_user)), data: { turbo_method: :delete } %>
+<%= link_to "気になる取消", question_interest_path(@question.id, @interest), data: { turbo_method: :delete } %>
