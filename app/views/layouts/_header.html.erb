@@ -17,10 +17,10 @@
           <%= link_to "質問投稿", new_question_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             アカウント
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><%= link_to "マイページ", current_user, class: "dropdown-item" %></li>
             <li><%= link_to "アカウント編集", edit_user_path(current_user), class: "dropdown-item" %></li>
             <li><hr class="dropdown-divider"></li>
