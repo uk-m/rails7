@@ -33,9 +33,9 @@
         <% end %>
       </ul>
       <form class="d-flex">
-        <%= search_form_with(model: @search, url: questions_search_path) do |f| %>
-          <%= f.text_field :title_cont, class: "form-control me-2", placeholder: '検索するテキストを入力...' %>
-          <%= f.submit ("検索") , class: "btn btn-outline-success" %>
+        <%= search_form_for @search, url: questions_search_path do |f| %>
+          <%= f.text_field :title_cont, class: "form-control", placeholder: '検索するテキストを入力...' %>
+          <%= f.submit "検索", class: "btn btn-outline-success" %>
         <% end %>
       </form>
     </div>
