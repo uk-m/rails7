@@ -32,12 +32,10 @@
           <%= link_to "ログイン", login_path, class: "nav-link" %>
         <% end %>
       </ul>
-      <form class="d-flex">
-        <%= search_form_for @search, url: questions_search_path do |f| %>
-          <%= f.text_field :title_cont, class: "form-control", placeholder: '検索するテキストを入力...' %>
-          <%= f.submit "検索", class: "btn btn-outline-success" %>
-        <% end %>
-      </form>
+      <%= search_form_for @search, url: questions_search_path, class: "d-flex" do |f| %>
+        <%= f.text_field :content_cont, class: "form-control me-1", placeholder: '検索するテキストを入力...' %>
+        <%= f.submit "検索", class: "btn btn-outline-success" %>
+      <% end %>
     </div>
   </div>
 </nav>
