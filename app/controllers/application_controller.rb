@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
 
   def set_search
     @search = Question.ransack(params[:q])
-    @search_questions = @search.result.page(params[:page])
   end
   
   private

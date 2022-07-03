@@ -17,10 +17,10 @@
           <%= link_to "質問投稿", new_question_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             アカウント
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><%= link_to "マイページ", current_user, class: "dropdown-item" %></li>
             <li><%= link_to "アカウント編集", edit_user_path(current_user), class: "dropdown-item" %></li>
             <li><hr class="dropdown-divider"></li>
@@ -32,12 +32,10 @@
           <%= link_to "ログイン", login_path, class: "nav-link" %>
         <% end %>
       </ul>
-      <form class="d-flex">
-        <%= search_form_for @search, url: questions_search_path do |f| %>
-          <%= f.text_field :title_cont, class: "form-control", placeholder: '検索するテキストを入力...' %>
-          <%= f.submit "検索", class: "btn btn-outline-success" %>
-        <% end %>
-      </form>
+      <%= search_form_for @search, url: questions_search_path, class: "d-flex" do |f| %>
+        <%= f.text_field :content_cont, class: "form-control me-1", placeholder: '検索するテキストを入力...' %>
+        <%= f.submit "検索", class: "btn btn-outline-success" %>
+      <% end %>
     </div>
   </div>
 </nav>
