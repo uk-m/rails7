@@ -40,6 +40,11 @@ class QuestionsController < ApplicationController
     redirect_to questions_path, status: :see_other
   end
   
+  def search
+    @search = Question.ransack(params[:q])
+    @questions = @search.result.page(params[:page])
+  end
+  
   private
     def question_params
       params.require(:question).permit(:title, :content, :category_id)
