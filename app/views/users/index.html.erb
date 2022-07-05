@@ -1,3 +1,4 @@
+<h1>ユーザー一覧</h1>
 <%= search_form_for @q, url: search_users_path, class: "input-group mt-3" do |f| %>
   <span class="input-group-text">ユーザー名</span>
   <%= f.search_field :name_cont, class: "form-control" %>
