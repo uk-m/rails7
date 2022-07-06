@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-  get 'questions/search', to: 'questions#search'
   
   root "questions#index"
   resources :users do
@@ -16,9 +15,12 @@ Rails.application.routes.draw do
   resources :categories, only: %i(index show)
   resources :relationships, only: %i(create destroy)
   resources :questions do
+    collection do
+      get :search
+    end
     resources :interests, only: %i(create destroy)
-    resources :answers, only: %i(create destroy) do 
-      resources :likes, only: %i(create destroy)
+    resources :answers, only: %i(create destroy) do
+      resources :likes, only: %i(create destroy), shallow: true
     end
   end
 end
