@@ -1,1 +1,3 @@
-<%= link_to "気になる取消", question_interest_path(@question.id, @interest), data: { turbo_method: :delete } %>
+<%= link_to question_interest_path(@question.id, @interest), data: { turbo_method: :delete } do %>
+  <i class="bi bi-bookmark-plus-fill" style="font-size: 2rem;"></i>
+<% end %>
