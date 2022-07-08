@@ -1,3 +1,4 @@
+<%= link_to answer.user.name, answer.user %>
 <%= answer.content %>
 <% if current_user == answer.user %>
   <%= link_to '回答を削除', [answer.question, answer],

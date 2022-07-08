@@ -1,6 +1,6 @@
 <%= turbo_stream.update "like_button" do %>
   <%= link_to like_path(@like), data: { "turbo-method": :delete } do %>
-    <i class="bi bi-heart-fill" style="font-size: 2rem; color: palevioletred;"></i>
+    <i class="bi bi-heart-fill" style="font-size: 1.5rem; color: palevioletred;"></i>
   <% end %>
 <% end %>
 <%= turbo_stream.update "likes_count" do %>

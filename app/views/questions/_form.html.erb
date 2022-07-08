@@ -12,5 +12,5 @@
     <%= f.label :category_id, 'カテゴリー', class: 'form-label' %>
     <%= f.collection_select :category_id, Category.all, :id, :name, prompt: 'カテゴリー選択', class: 'form-select' %>
   </div>
-  <%= f.submit '投稿する', class: 'btn btn-primary m-3' %>
+  <%= f.submit '投稿する', class: 'btn btn-primary' %>
 <% end %>
