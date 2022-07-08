@@ -3,8 +3,6 @@ class LikesController < ApplicationController
   
   def create
     @like = current_user.likes.create(answer_id: params[:answer_id])
-    @answer = @like.answer
-    @question = @answer.question
     if @like.save
       respond_to do |format|
         format.html { redirect_to @answer }
