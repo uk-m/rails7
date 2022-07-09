@@ -1,9 +1,13 @@
-<h1>ユーザー一覧</h1>
-<%= search_form_for @q, url: search_users_path, class: "input-group m-3" do |f| %>
-  <span class="input-group-text">ユーザー名</span>
-  <%= f.search_field :name_cont, class: "form-control" %>
-  <%= f.submit '検索', class: "btn btn-outline-secondary" %>
-<% end %>
-<ul>
-  <%= render @users %>
-</ul>
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <h1>ユーザー一覧</h1>
+    <%= search_form_for @q, url: search_users_path, class: "input-group m-3" do |f| %>
+      <span class="input-group-text">ユーザー名</span>
+      <%= f.search_field :name_cont, class: "form-control" %>
+      <%= f.submit '検索', class: "btn btn-outline-secondary" %>
+    <% end %>
+    <ul>
+      <%= render @users %>
+    </ul>
+  </div>
+</div>
