@@ -4,5 +4,5 @@
   <% end %>
 <% end %>
 <%= turbo_stream.update "likes_count" do %>
-  いいね <%= @answer.likes.count %>件
+  いいね <%= @like.answer.likes.count %>件
 <% end %>
