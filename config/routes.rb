@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get :search
     end
     member do
-      get :following, :followers
+      get :following, :followers, :interest, :like
     end
   end
   resources :categories, only: %i(index show)

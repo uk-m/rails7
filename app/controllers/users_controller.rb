@@ -64,6 +64,16 @@ class UsersController < ApplicationController
     @users = @q.result
   end
   
+  def interest
+    @user = User.find(params[:id])
+    @questions = @user.interested_questions
+  end
+  
+  def like
+    @user = User.find(params[:id])
+    @answers = @user.liked_answers
+  end
+  
   private
   
     def user_params

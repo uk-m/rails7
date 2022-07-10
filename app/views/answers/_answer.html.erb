@@ -1,20 +1,29 @@
-<%= link_to answer.user.name, answer.user %>
-<%= answer.content %>
-<% if current_user == answer.user %>
-  <%= link_to '回答を削除', [answer.question, answer],
-      data: { "turbo-method": :delete, turbo_confirm: '削除してもよろしいですか？' } %>
-<% end %>
-<% if logged_in? %>
-  <div id="like_button">
-    <% if answer.liked_by(current_user).present? %>
-      <%= link_to like_path(answer.liked_by(current_user)), data: { "turbo-method": :delete } do %>
-        <i class="bi bi-heart-fill" style="font-size: 1.5rem; color: palevioletred;"></i>
-      <% end %>
-    <% else %>
-      <%= link_to question_answer_likes_path(answer.question, answer), data: { "turbo-method": :post } do %>
-        <i class="bi bi-heart" style="font-size: 1.5rem; color: palevioletred;"></i>
-      <% end %>
-    <% end %>
+<div class="card">
+  <div class="card-header">
+    <%= link_to answer.user.name, answer.user %>
   </div>
-<% end %>
-<h4 id="likes_count">いいね <%= answer.likes.count %>件</h4>
+  <div class="card-body">
+    <p class="card-text"><%= answer.content %></p>
+    <% if current_user == answer.user %>
+      <%= link_to '回答を削除', [answer.question, answer],
+          data: { "turbo-method": :delete, turbo_confirm: '削除してもよろしいですか？' } %>
+    <% end %>
+    <% if logged_in? %>
+      <div id="like_button">
+        <% if answer.liked_by(current_user).present? %>
+          <%= link_to like_path(answer.liked_by(current_user)), data: { "turbo-method": :delete } do %>
+            <i class="bi bi-heart-fill" style="font-size: 1.5rem; color: palevioletred;"></i>
+          <% end %>
+        <% else %>
+          <%= link_to question_answer_likes_path(answer.question, answer), data: { "turbo-method": :post } do %>
+            <i class="bi bi-heart" style="font-size: 1.5rem; color: palevioletred;"></i>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    <p id="likes_count">いいね <%= answer.likes.count %>件</p>
+  </div>
+  <div class="card-footer text-muted">
+    <%= time_ago_in_words(answer.created_at).upcase + "前" %>
+  </div>
+</div>
