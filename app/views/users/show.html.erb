@@ -1,13 +1,13 @@
 <h1>ユーザー詳細</h1>
-<% if current_user.image.attached? %>
+<% if @user.image.attached? %>
   <%= image_tag current_user.image.variant(resize:'200x200') %>
 <% end %>
-<%= current_user.name %>
+<%= @user.name %>
 <section>
   <%= render 'shared/stats' %>
 </section>
 <%= render 'follow_form' if logged_in? %>
-<% current_user.interested_questions.each do |question| %>
+<% @user.interested_questions.each do |question| %>
   <%= question.user.name %>
   <%= question.content %>
 <% end %>
