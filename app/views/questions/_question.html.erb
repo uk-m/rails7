@@ -1,18 +1,27 @@
-<%= link_to question.user.name, question.user %>
-<%= question.title %>
-<%= simple_format(question.content) %>
-<%= link_to question.category.name, category_path(question.category), class: "badge bg-secondary" %>
-<%= link_to '詳細', question_path(question) %>
-<% if logged_in? %>
-  <div id="interest_button">
-    <% if question.interested_by(current_user).present? %>
-      <%= link_to question_interest_path(question.id, question.interested_by(current_user)), data: { turbo_method: :delete } do %>
-        <i class="bi bi-bookmark-plus-fill" style="font-size: 1.5rem; color: limegreen;"></i>
-      <% end %>
-    <% else %>
-      <%= link_to question_interests_path(question), data: { turbo_method: :post } do %>
-        <i class="bi bi-bookmark-plus" style="font-size: 1.5rem; color: limegreen;"></i>
-      <% end %>
+<div class="card">
+  <div class="card-header">
+    <%= link_to question.user.name, question.user %>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= question.title %></h5>
+    <p class="card-text"><%= simple_format(question.content) %></p>
+    <%= link_to question.category.name, category_path(question.category), class: "badge bg-secondary" %>
+    <%= link_to '詳細', question_path(question) %>
+    <% if logged_in? %>
+      <div id="interest_button">
+        <% if question.interested_by(current_user).present? %>
+          <%= link_to question_interest_path(question.id, question.interested_by(current_user)), data: { turbo_method: :delete } do %>
+            <i class="bi bi-bookmark-plus-fill" style="font-size: 1.5rem; color: limegreen;"></i>
+          <% end %>
+        <% else %>
+          <%= link_to question_interests_path(question), data: { turbo_method: :post } do %>
+            <i class="bi bi-bookmark-plus" style="font-size: 1.5rem; color: limegreen;"></i>
+          <% end %>
+        <% end %>
+      </div>
     <% end %>
   </div>
-<% end %>
+  <div class="card-footer text-muted">
+    <%= time_ago_in_words(question.created_at).upcase + "前" %>
+  </div>
+</div>

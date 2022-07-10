@@ -1,13 +1,17 @@
-<h1>ユーザー詳細</h1>
-<% if @user.image.attached? %>
-  <%= image_tag current_user.image.variant(resize:'200x200') %>
-<% end %>
-<%= @user.name %>
-<section>
-  <%= render 'shared/stats' %>
-</section>
-<%= render 'follow_form' if logged_in? %>
-<% @user.interested_questions.each do |question| %>
-  <%= question.user.name %>
-  <%= question.content %>
-<% end %>
+<div class="row justify-content-center">
+  <div class="col-4">
+    <h1>ユーザー詳細</h1>
+    <% if @user.image.attached? %>
+      <%= image_tag @user.image.variant(resize:'200x200') %>
+    <% end %>
+    <%= @user.name %>
+    <section>
+      <%= render 'shared/stats' %>
+    </section>
+    <%= render 'follow_form' if logged_in? %>
+    <%= link_to '保存している質問', interest_user_path(@user) %>
+    <%= link_to 'いいねしている回答', like_user_path(@user) %>
+  </div>
+  <div class="col-4">
+  </div>
+</div>
