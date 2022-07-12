@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-  <div class="col-4">
+  <div class="col-lg-4">
     <h1>ユーザー詳細</h1>
     <% if @user.image.attached? %>
       <%= image_tag @user.image.variant(resize:'200x200') %>
@@ -9,11 +9,13 @@
       <%= render 'shared/stats' %>
     </section>
     <%= render 'follow_form' if logged_in? %>
+    <%= link_to '保存している質問', interest_user_path(@user), class: "list-group-item w-50" %>
+    <%= link_to 'いいねしている回答', like_user_path(@user), class: "list-group-item w-50" %>
   </div>
-  <div class="col-4">
+  <div class="col-lg-4">
     <h3><%= @title %></h3>
     <% if @users.any? %>
-      <ul class="users follow">
+      <ul class="list-group list-group-flush mt-5">
         <%= render @users %>
       </ul>
       <%= paginate @users %>
