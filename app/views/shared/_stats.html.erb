@@ -1,12 +1,12 @@
 <% @user ||= current_user %>
-<div>
-  <a href="<%= following_user_path(@user) %>">
+<div class="list-group list-group-horizontal">
+  <a href="<%= following_user_path(@user) %>" class="list-group-item">
     フォロー中
     <strong id="following" class="stat">
       <%= @user.following.count %>
     </strong>
   </a>
-  <a href="<%= followers_user_path(@user) %>">
+  <a href="<%= followers_user_path(@user) %>" class="list-group-item">
     フォロワー
     <strong id="followers" class="stat">
       <%= @user.followers.count %>
