@@ -51,6 +51,9 @@ gem "mini_magick"
 gem "kaminari"
 gem "ransack"
 gem "cssbundling-rails"
+gem "cloudinary"
+gem "carrierwave"
+gem "dotenv-rails"
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
