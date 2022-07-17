@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-8 offset-md-2">
     <h1>ユーザー詳細</h1>
-    <% if @user.image.attached? %>
+    <% if @user.image? %>
       <%= image_tag @user.image.variant(resize:'200x200') %>
     <% end %>
     <%= @user.name %>
