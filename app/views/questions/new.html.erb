@@ -4,8 +4,8 @@
     <%= form_with(model: @question, local: true) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <div class="form-group mb-3">
-        <%= f.label :title, 'タイトル', class: 'form-label' %>
-        <%= f.text_field :title, class: 'form-control', required: true %>
+        <%= f.label :title, '転職の状況', class: 'form-label' %>
+        <%= f.select :title, ['転職を考えている', '転職活動中', '内定もらった'], { include_blank: '状況を選択' }, class: 'form-select' %>
       </div>
       <div class="form-group mb-3">
         <%= f.label :content, '内容', class: 'form-label' %>
