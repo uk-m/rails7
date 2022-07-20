@@ -1,7 +1,7 @@
 <li class="list-group-item">
   <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
-    <%= link_to "削除", user, data: { "turbo-method": :delete,
+    <%= link_to "削除", user, class: "d-flex justify-content-end", data: { "turbo-method": :delete,
                                   turbo_confirm: "削除してもよろしいですか？" } %>
   <% end %>
 </li>
