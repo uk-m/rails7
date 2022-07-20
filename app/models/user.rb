@@ -17,7 +17,6 @@ class User < ApplicationRecord
   has_many :interests, dependent: :destroy
   has_many :interested_questions, through: :interests, source: :question
   
-  mount_uploader :image, UserImageUploader
   validates :name, presence: true, length: { maximum: 25 }
   before_save :downcase_email
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
