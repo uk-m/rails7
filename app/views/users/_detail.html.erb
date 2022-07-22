@@ -1,4 +1,3 @@
-<h1>ユーザー詳細</h1>
 <% if @user.image.attached? %>
   <%= image_tag @user.image %>
 <% end %>
@@ -8,6 +7,7 @@
   <%= render 'shared/stats' %>
 </section>
 <div class="list-group">
+  <%= link_to '投稿した質問', question_user_path(@user), class: "list-group-item w-50" %>
   <%= link_to '保存している質問', interest_user_path(@user), class: "list-group-item w-50" %>
   <%= link_to 'いいねしている回答', like_user_path(@user), class: "list-group-item w-50" %>
 </div>
