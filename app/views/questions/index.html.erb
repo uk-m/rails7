@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-8 offset-md-2">
-    <h1>質問一覧</h1>
+    <h1>転職に関する質問</h1>
     <%= search_form_for @search, url: search_questions_path, class: "d-flex justify-content-end mb-3" do |f| %>
       <%= f.select :title_cont, ['転職を考えている', '転職活動中', '内定もらった'], { include_blank: '状況を選択' }, class: "form-select w-50" %>
       <%= f.submit "検索", class: "btn btn-outline-success" %>
