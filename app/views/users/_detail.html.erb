@@ -1,13 +1,21 @@
-<% if @user.image.attached? %>
-  <%= image_tag @user.image %>
-<% end %>
-<%= @user.name %>
-<%= render 'follow_form' if logged_in? %>
-<section>
+<div class="d-flex align-items-center m-3">
+  <div>
+    <% if @user.image.attached? %>
+      <%= image_tag @user.image %>
+    <% else %>
+      <i class="bi bi-person-circle" style="font-size: 2rem; color: gray;"></i>
+    <% end %>
+  </div>
+  <div class="ps-2">
+    <%= @user.name %>
+  </div>
+  <div class="ps-2">
+    <%= render 'follow_form' if logged_in? %>
+  </div>
+</div>
+<div class="list-group m-3">
   <%= render 'shared/stats' %>
-</section>
-<div class="list-group">
-  <%= link_to '投稿した質問', question_user_path(@user), class: "list-group-item w-50" %>
-  <%= link_to '保存している質問', interest_user_path(@user), class: "list-group-item w-50" %>
-  <%= link_to 'いいねしている回答', like_user_path(@user), class: "list-group-item w-50" %>
+  <%= link_to '投稿した質問', question_user_path(@user), class: "list-group-item list-group-item-secondary w-50" %>
+  <%= link_to '保存している質問', interest_user_path(@user), class: "list-group-item list-group-item-secondary w-50" %>
+  <%= link_to 'いいねしている回答', like_user_path(@user), class: "list-group-item list-group-item-secondary w-50" %>
 </div>
