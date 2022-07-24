@@ -3,10 +3,10 @@
     <% if @user.image.attached? %>
       <%= image_tag @user.image %>
     <% else %>
-      <i class="bi bi-person-circle" style="font-size: 2rem; color: gray;"></i>
+      <i class="bi bi-person-circle" style="font-size: 3rem; color: gray;"></i>
     <% end %>
   </div>
-  <div class="ps-2">
+  <div class="ps-2" style="font-size: 24px;">
     <%= @user.name %>
   </div>
   <div class="ps-2">
@@ -15,7 +15,7 @@
 </div>
 <div class="list-group m-3">
   <%= render 'shared/stats' %>
-  <%= link_to '投稿した質問', question_user_path(@user), class: "list-group-item list-group-item-secondary w-50" %>
-  <%= link_to '保存している質問', interest_user_path(@user), class: "list-group-item list-group-item-secondary w-50" %>
-  <%= link_to 'いいねしている回答', like_user_path(@user), class: "list-group-item list-group-item-secondary w-50" %>
+  <%= link_to '投稿した質問', question_user_path(@user), class: "list-group-item list-group-item-success w-50" %>
+  <%= link_to '保存している質問', interest_user_path(@user), class: "list-group-item list-group-item-success w-50" %>
+  <%= link_to 'いいねしている回答', like_user_path(@user), class: "list-group-item list-group-item-success w-50" %>
 </div>

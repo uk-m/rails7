@@ -8,17 +8,19 @@
           <i class="bi bi-person-circle" style="font-size: 2rem; color: gray;"></i>
         <% end %>
       </div>
-      <div class="ps-2">
-        <%= link_to answer.user.name, answer.user, style: "color: black" %>
+      <div class="ps-2" style="font-size: 18px;">
+        <%= link_to answer.user.name, answer.user, class: "text-reset" %>
+      </div>
+      <div class="ms-auto">
+        <% if current_user == answer.user %>
+          <%= link_to '回答を削除', [answer.question, answer], style: "color: gray",
+              data: { "turbo-method": :delete, turbo_confirm: '削除してもよろしいですか？' } %>
+        <% end %>
       </div>
     </div>
-    <p class="card-text"><%= answer.content %></p>
-    <% if current_user == answer.user %>
-      <%= link_to '回答を削除', [answer.question, answer],
-          data: { "turbo-method": :delete, turbo_confirm: '削除してもよろしいですか？' } %>
-    <% end %>
+    <div class="card-text ms-3"><%= simple_format(answer.content) %></div>
     <% if logged_in? %>
-      <div id="like_button">
+      <div id="like_button" class="ms-3">
         <% if answer.liked_by(current_user).present? %>
           <%= link_to like_path(answer.liked_by(current_user)), data: { "turbo-method": :delete } do %>
             <i class="bi bi-heart-fill" style="font-size: 1.5rem; color: palevioletred;"></i>
@@ -30,9 +32,9 @@
         <% end %>
       </div>
     <% end %>
-    <span id="likes_count">いいね <%= answer.likes.count %>件</span>
-  </div>
-  <div class="card-footer text-muted">
-    <%= time_ago_in_words(answer.created_at).upcase + "前" %>
+    <div class="d-flex">
+      <div id="likes_count" class="ms-3">いいね <%= answer.likes.count %>件</div>
+      <div class="ms-auto text-muted"><%= time_ago_in_words(answer.created_at).upcase + "前" %></div>
+    </div>
   </div>
 </div>
