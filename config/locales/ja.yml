@@ -7,9 +7,9 @@ ja:
         password: パスワード
         password_confirmation: 確認用パスワード
       question:
-        title: タイトル
+        title: 転職の状況
         content: 内容
-        category: カテゴリー
+        category: 業界
   views:
       pagination:
         first: 最初

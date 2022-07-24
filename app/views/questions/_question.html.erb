@@ -1,27 +1,38 @@
 <div class="card mb-3">
   <div class="card-body pb-0">
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center mb-2">
       <div>
         <% if question.user.image.attached? %>
           <%= image_tag question.user.image %>
         <% else %>
-          <i class="bi bi-person-circle" style="font-size: 2rem; color: gray;"></i>
+          <i class="bi bi-person-circle" style="font-size: 2.2rem; color: gray;"></i>
         <% end %>
       </div>
-      <div class="ps-2">
-        <%= link_to question.user.name, question.user, style: "color: black" %>
+      <div class="ps-2" style="font-size: 20px;">
+        <%= link_to question.user.name, question.user, class: "text-reset" %>
+      </div>
+      <div class="ms-auto">
+        <% if current_user == question.user %>
+          <%= link_to '質問を削除', question, style: "color: gray",
+              data: { "turbo-method": :delete, turbo_confirm: '削除してもよろしいですか？' } %>
+        <% end %>
       </div>
     </div>
-    <h5 class="card-title"><%= question.title %></h5>
-    <p class="card-text"><%= simple_format(question.content) %></p>
-    <% if current_user == question.user %>
-      <%= link_to '質問を削除', question,
-          data: { "turbo-method": :delete, turbo_confirm: '削除してもよろしいですか？' } %>
-    <% end %>
-    <%= link_to question.category.name, category_path(question.category), class: "badge bg-secondary" %>
-    <%= link_to '詳細', question_path(question) %>
+    <div class="d-flex align-items-center ms-3">
+      <div style="font-size: 1.4rem; color: green;">
+        <%= question.title %>
+      </div>
+      <div class="ps-2">
+        <%= link_to question.category.name, category_path(question.category), class: "badge bg-secondary" %>
+      </div>
+    </div>
+    <div class="card-text ms-3">
+      <%= link_to question_path(question), class: "text-reset" do %>
+        <% simple_format(question.content) %>
+      <% end %>
+    </div>
     <% if logged_in? %>
-      <div id="interest_button">
+      <div id="interest_button" class="ms-3">
         <% if question.interested_by(current_user).present? %>
           <%= link_to question_interest_path(question.id, question.interested_by(current_user)), data: { turbo_method: :delete } do %>
             <i class="bi bi-bookmark-plus-fill" style="font-size: 1.5rem; color: green;"></i>
@@ -34,7 +45,7 @@
       </div>
     <% end %>
   </div>
-  <div class="card-footer text-muted">
+  <div class="card-footer text-muted p-2 text-end">
     <%= time_ago_in_words(question.created_at).upcase + "前" %>
   </div>
 </div>
