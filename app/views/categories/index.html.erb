@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col-md-8 offset-md-2">
-    <h1>業界で絞る</h1>
-      <div class="row mt-5">
-        <% @categories.each do |category| %>
-        <div class="col-4">
-          <%= link_to category.name, category_path(category), style: "color: black" %>
-        </div>
-        <% end %>
+    <h1>業界で質問を絞る</h1>
+    <div class="row mt-5 bg-body">
+      <% @categories.each do |category| %>
+      <div class="col-4 mb-3 pt-3">
+        <%= link_to category.name, category_path(category), class: "text-reset ps-3" %>
       </div>
+      <% end %>
+    </div>
   </div>
 </div>
