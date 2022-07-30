@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :set_q, only: %i(index search)
   
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(12)
   end
   
   def new
