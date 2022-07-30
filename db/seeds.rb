@@ -3,6 +3,23 @@ User.create!(name: "Admin User",
              password: "password",
              password_confirmation: "password",
              admin: true)
+
+50.times do |n|
+  name  = Faker::Name.name
+  email = "user#{n+1}@mail.jp"
+  User.create!(name: name,
+               email: email,
+               password: "password",
+               password_confirmation: "password")
+end
+
+users = User.all
+user  = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
+
 Category.create!([
   { name: 'IT' },
   { name: '金融'},
