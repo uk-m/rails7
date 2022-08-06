@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Answer, type: :model do
+  it "ファクトリで関連するデータを生成する" do
+    answer = FactoryBot.create(:answer)
+    puts "This answer's question is #{answer.question.inspect}"
+    puts "This answer's user is #{answer.user.inspect}"
+  end
+  
   before do
     @user = User.create(
       name: "Taro",
