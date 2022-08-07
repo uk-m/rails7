@@ -1,16 +1,62 @@
 <div class="row">
   <div class="col-md-8 offset-md-2">
     <h1>質問詳細</h1>
-    <%= render @question %>
+    <div class="card mb-3">
+      <div class="card-body pb-0">
+        <div class="d-flex align-items-center mb-2">
+          <div>
+            <% if @question.user.image.attached? %>
+              <%= image_tag @question.user.image %>
+            <% else %>
+              <i class="bi bi-person-circle" style="font-size: 2.2rem; color: gray;"></i>
+            <% end %>
+          </div>
+          <div class="ps-2" style="font-size: 20px;">
+            <%= link_to @question.user.name, @question.user, class: "text-reset" %>
+          </div>
+          <div class="ms-auto">
+            <% if current_user == @question.user %>
+              <%= link_to '質問を削除', @question, style: "color: gray",
+                  data: { "turbo-method": :delete, turbo_confirm: '削除してもよろしいですか？' } %>
+            <% end %>
+          </div>
+        </div>
+        <div class="d-flex align-items-center ms-3">
+          <div style="font-size: 1.4rem; color: green;">
+            <%= @question.title %>
+          </div>
+          <div class="ps-2">
+            <%= link_to @question.category.name, category_path(@question.category), class: "badge bg-secondary" %>
+          </div>
+        </div>
+        <div class="card-text ms-3">
+          <%= simple_format(@question.content) %>
+        </div>
+        <% if logged_in? %>
+          <div id="interest_button" class="ms-3">
+            <% if @question.interested_by(current_user).present? %>
+              <%= link_to question_interest_path(@question.id, @question.interested_by(current_user)), data: { turbo_method: :delete } do %>
+                <i class="bi bi-bookmark-plus-fill" style="font-size: 1.5rem; color: green;"></i>
+              <% end %>
+            <% else %>
+              <%= link_to question_interests_path(@question), data: { turbo_method: :post } do %>
+                <i class="bi bi-bookmark-plus" style="font-size: 1.5rem; color: green;"></i>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="card-footer text-muted p-2 text-end">
+        <%= time_ago_in_words(@question.created_at).upcase + "前" %>
+      </div>
+    </div>
     <% if logged_in? %>
       <h2>質問に回答する</h2>
       <%= render "answers/form" %>
     <% end %>
     <h2>回答一覧</h2>
     <div class="row row-cols-1 row-cols-md-2 g-4">
-      <div class="col">
-        <%= render @answers %>
-      </div>
+      <%= render @answers %>
     </div>
   </div>
 </div>
