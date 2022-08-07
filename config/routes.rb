@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     end
     resources :interests, only: %i(create destroy)
     resources :answers, only: %i(create destroy) do
-      resources :likes, only: %i(create destroy), shallow: true
+      resources :likes, only: %i(create destroy)
     end
   end
 end

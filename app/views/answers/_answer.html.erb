@@ -1,40 +1,42 @@
-<div class="card">
-  <div class="card-body pb-0">
-    <div class="d-flex align-items-center">
-      <div>
-        <% if answer.user.image.attached? %>
-          <%= image_tag answer.user.image %>
-        <% else %>
-          <i class="bi bi-person-circle" style="font-size: 2rem; color: gray;"></i>
-        <% end %>
-      </div>
-      <div class="ps-2" style="font-size: 18px;">
-        <%= link_to answer.user.name, answer.user, class: "text-reset" %>
-      </div>
-      <div class="ms-auto">
-        <% if current_user == answer.user %>
-          <%= link_to '回答を削除', [answer.question, answer], style: "color: gray",
-              data: { "turbo-method": :delete, turbo_confirm: '削除してもよろしいですか？' } %>
-        <% end %>
-      </div>
-    </div>
-    <div class="card-text ms-3"><%= simple_format(answer.content) %></div>
-    <% if logged_in? %>
-      <div id="like_button" class="ms-3">
-        <% if answer.liked_by(current_user).present? %>
-          <%= link_to like_path(answer.liked_by(current_user)), data: { "turbo-method": :delete } do %>
-            <i class="bi bi-heart-fill" style="font-size: 1.5rem; color: palevioletred;"></i>
+<div class="col">
+  <div class="card">
+    <div class="card-body pb-0">
+      <div class="d-flex align-items-center">
+        <div>
+          <% if answer.user.image.attached? %>
+            <%= image_tag answer.user.image %>
+          <% else %>
+            <i class="bi bi-person-circle" style="font-size: 2rem; color: gray;"></i>
           <% end %>
-        <% else %>
-          <%= link_to question_answer_likes_path(answer.question, answer), data: { "turbo-method": :post } do %>
-            <i class="bi bi-heart" style="font-size: 1.5rem; color: palevioletred;"></i>
+        </div>
+        <div class="ps-2" style="font-size: 18px;">
+          <%= link_to answer.user.name, answer.user, class: "text-reset" %>
+        </div>
+        <div class="ms-auto">
+          <% if current_user == answer.user %>
+            <%= link_to '回答を削除', [answer.question, answer], style: "color: gray",
+                data: { "turbo-method": :delete, turbo_confirm: '削除してもよろしいですか？' } %>
           <% end %>
-        <% end %>
+        </div>
       </div>
-    <% end %>
-    <div class="d-flex">
-      <div id="likes_count" class="ms-3">いいね <%= answer.likes.count %>件</div>
-      <div class="ms-auto text-muted"><%= time_ago_in_words(answer.created_at).upcase + "前" %></div>
+      <div class="card-text ms-3"><%= simple_format(answer.content) %></div>
+      <% if logged_in? %>
+        <div id="like_button" class="ms-3">
+          <% if answer.liked_by(current_user).present? %>
+            <%= link_to question_answer_like_path(answer.question.id, answer), data: { "turbo-method": :delete } do %>
+              <i class="bi bi-heart-fill" style="font-size: 1.5rem; color: palevioletred;"></i>
+            <% end %>
+          <% else %>
+            <%= link_to question_answer_likes_path(answer.question, answer), data: { "turbo-method": :post } do %>
+              <i class="bi bi-heart" style="font-size: 1.5rem; color: palevioletred;"></i>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="d-flex">
+        <div id="likes_count" class="ms-3">いいね <%= answer.likes.count %>件</div>
+        <div class="ms-auto text-muted"><%= time_ago_in_words(answer.created_at).upcase + "前" %></div>
+      </div>
     </div>
   </div>
 </div>
