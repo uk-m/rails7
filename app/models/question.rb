@@ -1,5 +1,5 @@
 class Question < ApplicationRecord
-  belongs_to :owner, calss_name: User, foreign_key: :user_id
+  belongs_to :user
   belongs_to :category
   has_many :answers, dependent: :destroy
   has_many :interests, dependent: :destroy
