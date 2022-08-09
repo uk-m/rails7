@@ -24,3 +24,7 @@ production:
   <<: *default
   adapter: postgresql
   encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: rails7_production
+  username: rails7
+  password: <%= ENV['RAILS7_DATABASE_PASSWORD'] %>
