@@ -1,7 +1,7 @@
 <li class="list-group-item">
   <div class="d-flex align-items-center">
     <div>
-      <% if user.image.attached? %>
+      <% if user.image? %>
         <%= image_tag user.image %>
       <% else %>
         <i class="bi bi-person-circle" style="font-size: 2.2rem; color: gray;"></i>
