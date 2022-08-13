@@ -4,5 +4,9 @@ FactoryBot.define do
     content { "testcontent" }
     category { "IT" }
     association :owner
+    
+    trait :invalid do
+      name { nil }
+    end
   end
 end
