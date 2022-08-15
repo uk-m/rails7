@@ -31,6 +31,11 @@
         <% simple_format(question.content) %>
       <% end %>
     </div>
+    <div id="likes_count" class="ms-3">
+      <%= link_to question_path(question), class: "text-reset" do %>
+        いいね <%= question.likes.count %>件
+      <% end %>
+    </div>
   </div>
   <div class="card-footer text-muted p-2 text-end">
     <%= time_ago_in_words(question.created_at).upcase + "前" %>
