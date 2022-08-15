@@ -3,7 +3,7 @@
     <div class="card-body pb-0">
       <div class="d-flex align-items-center">
         <div>
-          <% if answer.user.image.attached? %>
+          <% if answer.user.image? %>
             <%= image_tag answer.user.image %>
           <% else %>
             <i class="bi bi-person-circle" style="font-size: 2rem; color: gray;"></i>
