@@ -46,11 +46,6 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    active_storage_validations (0.9.8)
-      activejob (>= 5.2.0)
-      activemodel (>= 5.2.0)
-      activestorage (>= 5.2.0)
-      activesupport (>= 5.2.0)
     activejob (7.0.2.2)
       activesupport (= 7.0.2.2)
       globalid (>= 0.3.6)
@@ -66,7 +61,6 @@ GEM
       activesupport (= 7.0.2.2)
       marcel (~> 1.0)
       mini_mime (>= 1.1.0)
-    activestorage-cloudinary-service (0.2.3)
     activesupport (7.0.2.2)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
@@ -327,8 +321,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  active_storage_validations
-  activestorage-cloudinary-service
   bcrypt (~> 3.1.7)
   bootsnap
   capybara

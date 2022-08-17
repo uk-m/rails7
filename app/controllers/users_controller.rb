@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
-    @user.image.attach(params[:user][:image])
     if @user.save
       log_in @user
       flash[:success] = "新規登録完了しました"
