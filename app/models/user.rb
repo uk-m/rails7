@@ -3,7 +3,6 @@ class User < ApplicationRecord
   has_secure_password
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
-  has_one_attached :image
   mount_uploader :image, ImageUploader
   has_many :active_relationships, class_name: "Relationship",
                                   foreign_key: "follower_id",
@@ -23,9 +22,6 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 40 },
     format: { with: VALID_EMAIL_REGEX }, uniqueness: true
-  validates :image, content_type: { in: %w[image/jpeg image/gif image/png],
-                                      message: "画像ファイルを選択してください" },
-                    size: { less_than: 5.megabytes,　message: "画像は5MBまでです" }
   validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
   
   def User.digest(string)
