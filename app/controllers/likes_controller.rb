@@ -13,6 +13,7 @@ class LikesController < ApplicationController
 
   def destroy
     @like = Like.find_by(id: params[:id])
+    @answer = @like.answer
     if @like.destroy
       respond_to do |format|
         format.html { redirect_to @answer, status: :see_other }
