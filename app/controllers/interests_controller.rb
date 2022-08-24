@@ -6,7 +6,6 @@ class InterestsController < ApplicationController
     @question = @interest.question
     if @interest.save
       respond_to do |format|
-        # format.html { redirect_to @interest }
         format.turbo_stream
       end
     end
@@ -17,7 +16,6 @@ class InterestsController < ApplicationController
     @question = @interest.question
     if @interest.destroy
       respond_to do |format|
-        # format.html { redirect_to @interest, status: :see_other }
         format.turbo_stream
       end
     end
