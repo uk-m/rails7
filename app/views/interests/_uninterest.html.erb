@@ -1,3 +1,3 @@
-<%= link_to question_interest_path(@question, @interest), data: { turbo_method: :delete } do %>
+<%= link_to question_interest_path(@question.id, @interest), data: { turbo_method: :delete } do %>
   <i class="bi bi-bookmark-plus-fill" style="font-size: 1.5rem; color: green;"></i>
 <% end %>

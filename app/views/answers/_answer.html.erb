@@ -21,7 +21,7 @@
       </div>
       <div class="card-text ms-3"><%= simple_format(answer.content) %></div>
       <% if logged_in? %>
-        <div id="like_button" class="ms-3">
+        <div id="like_button-<%= answer.id.to_s %>" class="ms-3">
           <% if answer.liked_by(current_user).present? %>
             <%= link_to like_path(answer.liked_by(current_user)), data: { "turbo-method": :delete } do %>
               <i class="bi bi-heart-fill" style="font-size: 1.5rem; color: palevioletred;"></i>
@@ -34,7 +34,7 @@
         </div>
       <% end %>
       <div class="d-flex">
-        <div id="likes_count" class="ms-3">いいね <%= answer.likes.count %>件</div>
+        <div id="likes_count-<%= answer.id.to_s %>" class="ms-3">いいね <%= answer.likes.count %>件</div>
         <div class="ms-auto text-muted"><%= time_ago_in_words(answer.created_at).upcase + "前" %></div>
       </div>
     </div>
