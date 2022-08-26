@@ -1,7 +1,7 @@
 <div class="d-flex align-items-center m-3">
   <div>
     <% if @user.image? %>
-      <%= image_tag @user.image %>
+      <%= image_tag @user.image.url %>
     <% else %>
       <i class="bi bi-person-circle" style="font-size: 3rem; color: gray;"></i>
     <% end %>
