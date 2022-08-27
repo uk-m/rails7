@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+  post 'guest_sign_in', to: 'sessions#guest_sign_in'
   
   root "questions#index"
   resources :users do

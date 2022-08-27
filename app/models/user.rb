@@ -65,6 +65,13 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
   
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲスト"
+    end
+  end
+  
   private
   
     def downcase_email
