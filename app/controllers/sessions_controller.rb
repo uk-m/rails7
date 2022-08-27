@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to root_path
     else
-      flash.now[:danger] = '正しい情報を入力してください'
+      flash[:danger] = '正しい情報を入力してください'
       render 'new', status: :unprocessable_entity
     end
   end
@@ -17,5 +17,12 @@ class SessionsController < ApplicationController
   def destroy
     log_out if logged_in?
     redirect_to root_path, status: :see_other
+  end
+  
+  def guest_sign_in
+    user = User.guest
+    log_in user
+    flash[:success] = 'ゲストユーザーとしてログインしました。'
+    redirect_to root_path
   end
 end

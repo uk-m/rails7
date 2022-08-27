@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: %i(index edit update destroy following followers)
   before_action :admin_user, only: :destroy
   before_action :set_q, only: %i(index search)
+  before_action :ensure_normal_user, only: %i(update destroy)
   
   def index
     @users = User.page(params[:page]).per(12)
@@ -76,6 +77,14 @@ class UsersController < ApplicationController
   def like
     @user = User.find(params[:id])
     @answers = @user.liked_answers
+  end
+  
+  def ensure_normal_user
+    @user = User.find_by(id: params[:id])
+    if @user.email == "guest@example.com"
+      flash[:danger] = "ゲストユーザーは変更できません。"
+      redirect_to root_path
+    end
   end
   
   private
