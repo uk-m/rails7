@@ -6,7 +6,7 @@
         <div class="d-flex align-items-center mb-2">
           <div>
             <% if @question.user.image? %>
-              <%= image_tag @question.user.image %>
+              <%= cl_image_tag(@question.user.image.url, :width=>50, :crop=>"scale", :sign_url=>true) %>
             <% else %>
               <i class="bi bi-person-circle" style="font-size: 2.2rem; color: gray;"></i>
             <% end %>
