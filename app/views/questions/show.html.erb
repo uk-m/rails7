@@ -33,7 +33,7 @@
           <%= simple_format(@question.content) %>
         </div>
         <% if logged_in? %>
-          <div id="interest_button" class="ms-3">
+          <div id="interest_button-<%= question.id.to_s %>" class="ms-3">
             <% if @question.interested_by(current_user).present? %>
               <%= link_to question_interest_path(@question.id, @question.interested_by(current_user)), data: { turbo_method: :delete } do %>
                 <i class="bi bi-bookmark-plus-fill" style="font-size: 1.5rem; color: green;"></i>
